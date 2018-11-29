@@ -264,19 +264,19 @@ client.on('message', msg => {
    	}else if (Math.floor((Math.random() * 13) + 1) === 6) {
    		msg.channel.sendMessage('6');
    	}else if (Math.floor((Math.random() * 13) + 1) === 7) {
-   		msg.reply('7');
+   		msg.channel.sendMessage('6');
    	}else if (Math.floor((Math.random() * 13) + 1) === 8) {
-   		msg.channel.sendMessage('8');
-   	}else if (Math.floor((Math.random() * 13) + 1) === 9) {
-   		msg.reply('9');
-   	}else if (Math.floor((Math.random() * 13) + 1) === 10) {
-   		msg.channel.sendMessage('0');
-   }else if (Math.floor((Math.random() * 13) + 1) === 11) {
    		msg.channel.sendMessage('5');
+   	}else if (Math.floor((Math.random() * 13) + 1) === 9) {
+   		msg.channel.sendMessage('4');
+   	}else if (Math.floor((Math.random() * 13) + 1) === 10) {
+   		msg.channel.sendMessage('3');
+   }else if (Math.floor((Math.random() * 13) + 1) === 11) {
+   		msg.channel.sendMessage('2');
 	}else if (Math.floor((Math.random() * 13) + 1) === 12) {
    		msg.channel.sendMessage('1');
 	}else if (Math.floor((Math.random() * 13) + 1) === 13) {
-   		msg.channel.sendMessage('2');
+   		msg.channel.sendMessage('0');
    }
   }
 	
