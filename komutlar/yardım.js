@@ -8,11 +8,11 @@ exports.run = (client, message, params) => {
   .setTitle("Komutlar")
   .setDescription('')
   .setColor(0x00ffff)
-  .addField("**» Eğlence Komutları**", `!atatürk = Rastgele Atatürkün Fotoğraflarını Gösterir. \n!starwars = StarWars (Pixel Formatında) Filmini Gösterir. \n!banned = Dene ve Gör! \n!kahkaha = Kahkaha Atarsınız \n!herkesebendençay = Herkese Çay Alırsınız. \n!koş = Koşarsınız.\n!çayiç = Çay İçersiniz. \n!çekiç = İstediğiniz Kişiye Çekiç Atarsınız. \n!çayaşekerat = Çaya Şeker Atarsınız. \n!yumruk-at = Yumruk Atarsınız. \n!şanslısayım = Bot Sizin Şanslı Sayınızı Söyler.`)
+  .addField("**» Eğlence Komutları**", `!atatürk = Rastgele Atatürkün Fotoğraflarını Gösterir. \n!starwars = StarWars (Pixel Formatında) Filmini Gösterir. \n!banned = Dene ve Gör! \n!kahkaha = Kahkaha Atarsınız \n!herkesebendençay = Herkese Çay Alırsınız. \n!koş = Koşarsınız.\n!çayiç = Çay İçersiniz. \n!çekiç = İstediğiniz Kişiye Çekiç Atarsınız. \n!çayaşekerat = Çaya Şeker Atarsınız. \n!gif = Rasgele Gif Yollar. \n!pokemon = Rasgele Pokemon Resmi Yollar. \n!şanslısayım = Bot Sizin Şanslı Sayınızı Söyler. \n!yumruk-at = Yumruk Atarsınız. \n!şanslısayım = Bot Sizin Şanslı Sayınızı Söyler.`)
   .addField("**» Kullanıcı Komutları**", `!report = İstediğiniz Kullanıcıyı Reportlarsınız. \n!kısalt = İstediğiniz Linki Kısaltarak Özelleştire Bilirsiniz. \n!yaz = Bota İsediğinizi Yazdırırsınız. \n!sunucubilgi = Bulunduğunuz Sunucu Hakkında Bilgi Verir. \n!sunucuresmi = Bulunduğunuz Sunucunun Resmin Gösterir. \n!kullanıcıbilgim = Sizin Hakkınızda Bilgi Verir. \n!avatarım = Avatarınınızı Gösterir. `)
   .addField("**» Oyun Komutları**", `!fortnite = İstediğiniz Kullanıcının İstatistiklerine Bakarsınız.`)
   .addField("**» Sunucu Yetkilisi Komutları**", `!ban = İstediğiniz Kişiyi Sunucudan Banlar. \n!kick  = İstediğiniz Kişiyi Sunucudan Atar. \n!unban = İstediğiniz Kişinin Yasağını Açar. \n!sustur = İstediğiniz Kişiyi Susturur. \n!sil = Belirtilen Miktarda Mesajı Silir. (MAX 100) \n!oylama = Oylama Açar. \n!duyuru = Güzel Bir Duyuru Görünümü Sağlar.`)
-  .addField("**» Botun Ana Komutları**", "!yardım = BOT Komutlarını Atar. \n!bilgi = BOT Kendisi Hakkında Bilgi Verir. \n!ping = BOT Gecikme Süresini Söyler. \n!davet = BOT Davet Linkini Atar. \n!istatistik = BOT İstatistiklerini Gösterir.")
+  .addField("**» Botun Ana Komutları**", "!yardım = BOT Komutlarını Atar. \n!bilgi = BOT Kendisi Hakkında Bilgi Verir. \n!ping = BOT Gecikme Süresini Söyler. \n!davet = BOT Davet Linkini Atar. \n!istatistik = BOT İstatistiklerini Gösterir. \n!öneri = Önerilerinizi Bot Sahibine Gönderir.")
   .setFooter('SAVAŞÇI Güncel Sürüm [ BETA v0.2.5 ]')
   if (!params[0]) {
     const commandNames = Array.from(client.commands.keys());
