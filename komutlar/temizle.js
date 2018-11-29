@@ -1,20 +1,15 @@
-exports.run = function(client, message) {
-message.channel.bulkDelete(20);
-message.channel.send("20 mesaj sildim").then(msg => {
-	msg.delete(5000)
-})
+const Discord = require("discord.js");
+const errors = require("../utils/errors.js");
 
-};
+module.exports.run = async (bot, message, args) => {
 
-exports.conf = {
-  enabled: true, 
-  guildOnly: false, 
-  aliases: [],
-  permLevel: 0 
-};
+  if(!message.member.hasPermission("MANAGE_MESSAGES")) return errors.noPerms(message, "MANAGE_MESSAGES");
+  if(!args[0]) return message.channel.send(":x: Dostum bir sayı belirtmelisin.");
+  message.channel.bulkDelete(args[0]).then(() => {
+    message.channel.send(`:white_check_mark: Başarı ile ${args[0]} adet mesaj silindi.`).then(msg => msg.delete(5000));
+  });
+}
 
-exports.help = {
-  name: 'temizle', 
-  description: 'Belirtilen miktarda mesaj siler',
-  usage: 'temizle <miktar>'
-};
+module.exports.help = {
+  name: "temizle"
+}
