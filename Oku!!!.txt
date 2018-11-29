@@ -1,0 +1,5 @@
+flaiscode Hazýr Bot
+Bu Bot flaiscode Aittir!!!
+komutlar Klasörünün Ýçine Modül Olarak Kulanýnýz!!!
+------------------------------------------------------------
+|15.08.2018|
