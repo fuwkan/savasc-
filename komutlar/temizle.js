@@ -1,15 +1,62 @@
-const Discord = require("discord.js");
-const errors = require("../utils/errors.js");
+const { Command } = require('discord.js-commando');
 
-module.exports.run = async (bot, message, args) => {
+module.exports = class ModerationCleanCommand extends Command {
+	constructor(client) {
+		super(client, {
+			name: 'temizle',
+			aliases: ['mesajsil', 'mesajlarısil', 'sil'],
+			group: 'moderasyon',
+			memberName: 'temizle',
+			description: 'Mesajları siler.',
+			guildOnly: true,
+			throttling: {
+				usages: 2,
+				duration: 3
+			},
 
-  if(!message.member.hasPermission("MANAGE_MESSAGES")) return errors.noPerms(message, "MANAGE_MESSAGES");
-  if(!args[0]) return message.channel.send(":x: Dostum bir sayı belirtmelisin.");
-  message.channel.bulkDelete(args[0]).then(() => {
-    message.channel.send(`:white_check_mark: Başarı ile ${args[0]} adet mesaj silindi.`).then(msg => msg.delete(5000));
-  });
-}
+			args: [
+				{
+					key: 'limit',
+					prompt: 'kaç mesaj silmek istersiniz?\n',
+					type: 'integer'
+				}
+			]
+		});
+	}
 
-module.exports.help = {
-  name: "temizle"
-}
+	hasPermission(msg) {
+		return this.client.isOwner(msg.author) || msg.member.hasPermission("MANAGE_MESSAGES")
+	}
+
+	async run(msg, args) {
+		const sayi1 = args.limit;
+		const sayi  = Number(sayi1);
+		if (sayi < 2) return msg.channel.send(client.config.customEmojis.basarisiz + ' En az 2 mesaj silebilirim.');
+		if (sayi > 100) return msg.channel.send(client.config.customEmojis.basarisiz + ' En fazla 100 mesaj silebilirim.');
+		if (sayi < 100) {
+			msg.channel.send(sayi + ' adet mesaj sorgulanıyor...').then(smsg => {
+				msg.channel.fetchMessages({limit: parseInt(sayi) + 2}).then(messages => {
+					smsg.edit(parseInt(messages.size) - 2 + ' adet mesaj bulundu. Bulunan mesajlar siliniyor...').then(bmsg => {
+						msg.channel.bulkDelete(messages.size, true).then(deletedMessages => {
+							if (deletedMessages.size < 1) return bmsg.edit(client.config.customEmojis.basarisiz + ' Hiç mesaj silinemedi. _(Tahminen 14 günden daha eski mesajlar var ise bundan dolayı mesajlar silinememiş olabilir.)_').then(msg => msg.delete(3000));
+							const mesajadet = parseInt(deletedMessages.size) - 2;
+							msg.channel.send(client.config.customEmojis.basarili + ' ' + mesajadet + ' adet mesaj silindi!').then(msg => msg.delete(3000));	
+						})
+					})
+				});
+			});
+		} else {
+			msg.channel.send(sayi + ' adet mesaj sorgulanıyor...').then(smsg => {
+				msg.channel.fetchMessages({limit: parseInt(sayi)}).then(messages => {
+					smsg.edit(parseInt(messages.size) + ' adet mesaj bulundu. Bulunan mesajlar siliniyor...').then(bmsg => {
+						msg.channel.bulkDelete(messages.size, true).then(deletedMessages => {
+							if (deletedMessages.size < 1) return bmsg.edit(client.config.customEmojis.basarisiz + ' Hiç mesaj silinemedi. _(Tahminen 14 günden daha eski mesajlar var ise bundan dolayı mesajlar silinememiş olabilir.)_').then(msg => msg.delete(3000));
+							const mesajadet = parseInt(deletedMessages.size);
+							msg.channel.send(client.config.customEmojis.basarili + ' ' + mesajadet + ' adet mesaj silindi!').then(msg => msg.delete(3000));	
+						})
+					})
+				});
+			});
+		}
+	}
+};
