@@ -250,7 +250,7 @@ client.on('message', msg => {
   
   
             
-          if (msg.content.toLowerCase() === prefix + 'pokemon') {
+          if (msg.content.toLowerCase() === prefix + 'zarat') {
   	if (Math.floor((Math.random() * 13) + 1) === 1) {
    		msg.channel.sendMessage('1');
    	}else if (Math.floor((Math.random() * 13) + 1) === 2) {
