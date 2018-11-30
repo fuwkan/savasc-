@@ -538,6 +538,14 @@ client.on('message', msg => {
       msg.author.sendMessage("Sunucu Davet Link: https://discord.gg/yGdswDQ").then(message => console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Gönderilen mesaj: ${message.content}`)).catch(console.error);
   }
 });
+  
+client.on('warn', e => {
+  console.log(chalk.bgYellow(e.replace(regToken, 'that was redacted')));
+});
+
+client.on('error', e => {
+  console.log(chalk.bgRed(e.replace(regToken, 'that was redacted')));
+});
 
 // SUNUCUYA GİRİŞ
 client.on('guildMemberAdd', member => {
@@ -567,14 +575,6 @@ client.on('guildMemberRemove', member => {
   .setTitle('📤 | Sunucudan Ayrıldı')
   .setTimestamp()
   ÇıkışKanalı.sendEmbed(ÇıkışMesaj); 
-});
-  
-client.on('warn', e => {
-  console.log(chalk.bgYellow(e.replace(regToken, 'that was redacted')));
-});
-
-client.on('error', e => {
-  console.log(chalk.bgRed(e.replace(regToken, 'that was redacted')));
 });
 
 client.login(process.env.BOT_TOKEN);
