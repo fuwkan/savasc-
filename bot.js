@@ -86,7 +86,7 @@ client.on('message', msg => {
     msg.reply('Aleyküm Selam Knk Hoşgeldin');
   }
 	  //////////////////////////
-	client.on('message', message => {
+client.on('message', message => {
   if(message.author.bot) return
  
   if(message.content === "nt!para") {
@@ -105,7 +105,12 @@ client.on('message', msg => {
   
   
   })
-  }           
+  }
+  
+    if (message.content === 'merhaba') {
+    message.reply('Sanada Merhabalar!');
+  }
+  });         
 		//////////////////////////
   
       if (msg.content.toLowerCase() === '+ping') {
