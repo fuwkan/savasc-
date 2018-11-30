@@ -538,6 +538,36 @@ client.on('message', msg => {
       msg.author.sendMessage("Sunucu Davet Link: https://discord.gg/yGdswDQ").then(message => console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Gönderilen mesaj: ${message.content}`)).catch(console.error);
   }
 });
+
+// SUNUCUYA GİRİŞ
+client.on('guildMemberAdd', member => {
+  let Sunucu = member.guild;
+  let GirişRolü = guild.roles.find('name', 'Vatandaş');
+  member.addRole(Vatandaş);
+
+  const GirişKanalı = member.guild.channels.find('name', 'aramıza-katılanlar');
+  if (!GirişKanalı) return;
+  const GirişMesaj = new Discord.RichEmbed()
+  .setColor('GREEN')
+  .setAuthor(member.user.username, member.user.avatarURL)
+  .setThumbnail(member.user.avatarURL)
+  .setTitle('📥 | Sunucuya katıldı')
+  .setTimestamp()
+  GirişKanalı.sendEmbed(GirişMesaj);
+});
+
+// SUNUCUDAN ÇIKIŞ
+client.on('guildMemberRemove', member => {
+  const ÇıkışKanalı = member.guild.channels.find('name', 'aramıza-katılanlar');
+  if (!ÇıkışKanalı) return;
+  const ÇıkışMesaj = new Discord.RichEmbed()
+  .setColor('RED')
+  .setAuthor(member.user.username, member.user.avatarURL)
+  .setThumbnail(member.user.avatarURL)
+  .setTitle('📤 | Sunucudan Ayrıldı')
+  .setTimestamp()
+  ÇıkışKanalı.sendEmbed(ÇıkışMesaj); 
+});
   
 client.on('warn', e => {
   console.log(chalk.bgYellow(e.replace(regToken, 'that was redacted')));
