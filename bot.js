@@ -538,6 +538,26 @@ client.on('message', msg => {
       msg.author.sendMessage("Sunucu Davet Link: https://discord.gg/yGdswDQ").then(message => console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Gönderilen mesaj: ${message.content}`)).catch(console.error);
   }
 });
+
+////////////////////////
+
+client.on("guildMemberAdd", member => {
+	
+	var channel = member.guild.channels.find("name", "aramıza-katılanlar");
+	if (!channel) return;
+	
+	var role = member.guild.roles.find("name", "vatandaş");
+	if (!role) return;
+	
+	member.addRole(role); 
+	
+	channel.send(member + " artık " + role + " rolü ile aramızda");
+	
+	member.send("Aramıza hoş geldin! Artık @vatandaş rolüne sahipsin!")
+	
+});
+
+////////////////////////
   
 client.on('warn', e => {
   console.log(chalk.bgYellow(e.replace(regToken, 'that was redacted')));
@@ -550,7 +570,7 @@ client.on('error', e => {
 // SUNUCUYA GİRİŞ
 client.on('guildMemberAdd', member => {
   let Sunucu = member.guild;
-  let GirişRolü = guild.roles.find('name', 'Vatandaş');
+  let GirişRolü = guild.roles.find('name', 'vatandaş');
   member.addRole(Vatandaş);
 
   const GirişKanalı = member.guild.channels.find('name', 'aramıza-katılanlar');
