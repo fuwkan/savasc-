@@ -538,12 +538,20 @@ client.on('message', msg => {
       msg.author.sendMessage("Sunucu Davet Link: https://discord.gg/yGdswDQ").then(message => console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Gönderilen mesaj: ${message.content}`)).catch(console.error);
   }
 });
+  
+client.on('warn', e => {
+  console.log(chalk.bgYellow(e.replace(regToken, 'that was redacted')));
+});
+
+client.on('error', e => {
+  console.log(chalk.bgRed(e.replace(regToken, 'that was redacted')));
+});
 
 ////////////////////////
 
 client.on("guildMemberAdd", member => {
 	
-	var channel = member.guild.channels.find("name", "aramıza-katılanlar");
+	var channel = member.guild.channels.find("name", "giriş-çıkış");
 	if (!channel) return;
 	
 	var role = member.guild.roles.find("name", "vatandaş");
@@ -559,31 +567,13 @@ client.on("guildMemberAdd", member => {
 
 ////////////////////////
 
-client.elevation = message => {
-  if(!message.guild) {
-	return; }
-  let permlvl = 0;
-  if (message.member.hasPermission("BAN_MEMBERS")) permlvl = 2;
-  if (message.member.hasPermission("ADMINISTRATOR")) permlvl = 3;
-  if (message.author.id === ayarlar.sahip) permlvl = 4;
-  return permlvl;
-};
-  
-client.on('warn', e => {
-  console.log(chalk.bgYellow(e.replace(regToken, 'that was redacted')));
-});
-
-client.on('error', e => {
-  console.log(chalk.bgRed(e.replace(regToken, 'that was redacted')));
-});
-
 // SUNUCUYA GİRİŞ
 client.on('guildMemberAdd', member => {
   let Sunucu = member.guild;
   let GirişRolü = guild.roles.find('name', 'vatandaş');
   member.addRole(Vatandaş);
 
-  const GirişKanalı = member.guild.channels.find('name', 'aramıza-katılanlar');
+  const GirişKanalı = member.guild.channels.find('name', 'giriş-çıkış');
   if (!GirişKanalı) return;
   const GirişMesaj = new Discord.RichEmbed()
   .setColor('GREEN')
@@ -596,7 +586,7 @@ client.on('guildMemberAdd', member => {
 
 // SUNUCUDAN ÇIKIŞ
 client.on('guildMemberRemove', member => {
-  const ÇıkışKanalı = member.guild.channels.find('name', 'aramıza-katılanlar');
+  const ÇıkışKanalı = member.guild.channels.find('name', 'giriş-çıkış');
   if (!ÇıkışKanalı) return;
   const ÇıkışMesaj = new Discord.RichEmbed()
   .setColor('RED')
