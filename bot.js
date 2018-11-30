@@ -276,7 +276,7 @@ client.on('message', msg => {
 	}else if (Math.floor((Math.random() * 13) + 1) === 12) {
    		msg.channel.sendMessage('🎲1');
 	}else if (Math.floor((Math.random() * 13) + 1) === 13) {
-   		msg.channel.sendMessage('🎲0');
+   		msg.channel.sendMessage('🎲1');
    }
   }
 	
