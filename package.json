@@ -1,14 +1,16 @@
 {
-  "name": "turkbot",
+  "//1": "describes your app and its dependencies",
+  "//2": "https://docs.npmjs.com/files/package.json",
+  "//3": "updating this file will download and update your packages",
+  "name": "hello-express",
   "version": "0.0.1",
-  "description": "",
+  "description": "A simple Node app built on Express, instantly up and running.",
   "main": "bot.js",
   "scripts": {
-    "test": "node bot.js"
+    "start": "node bot.js"
   },
-  "author": "Miralay",
-  "license": "ISC",
   "dependencies": {
+    "express": "^4.16.3"
     "chalk": "^2.3.0",
     "chance": "^1.0.16",
     "change": "0.0.0",
@@ -28,5 +30,17 @@
     "package-name": "^0.1.0",
     "superagent": "^4.0.0",
     "weather-js": "^2.0.0"
-  }
+  },
+  "engines": {
+    "node": "8.x"
+  },
+  "repository": {
+    "url": "https://glitch.com/edit/#!/hello-express"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "express"
+  ]
 }
