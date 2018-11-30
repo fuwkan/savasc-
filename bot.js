@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();;
-var economy = require('discord-eco');
+const economy = require('discord-eco');
 const ayarlar = require('./ayarlar.json');
 const chalk = require('chalk');
 const fs = require('fs');
@@ -14,29 +14,28 @@ const log = message => {
 };
 
 /////////////////////////////////////////
-if (message.content.toUpperCase() === `${prefix}BALANCE`) {
- 
-            economy.fetchBalance(message.author.id).then((i) => { // economy.fetchBalance grabs the userID, finds it, and puts it into 'i'.
-                message.channel.send(`**Balance:** ${i.money}`);
-            })
-        }
- 
-        // Example: Adding Money To A User
-        if (message.content.toUpperCase() === `${prefix}PAYDAY`) {
- 
-            economy.updateBalance(message.author.id, 500).then((i) => { // economy.updateBalance grabs the (userID, value) value being how much you want to add, and puts it into 'i'.
-                message.channel.send(`**You got $500!**\n**New Balance:** ${i.money}`);
-            })
-        }
- 
-        // Example: Removing Money From A User
-        if (message.content.toUpperCase() === `${prefix}PAYFINE`) {
- 
-            economy.updateBalance(message.author.id, -500).then((i) => { // Since the 'value' is -500, it will 'add' -500, making the balance $500 lower.
-                message.channel.send(`**You paid your fine of $500!**\n**New Balance:** ${i.money}`);
-            })
-        }
-    });
+client.on('message', message => {
+  
+  if(message.content === "--para") {
+  economy.fetchBalance(message.author.id).then(i => {
+  message.reply("paran: " + i.money + "TL")
+  })
+  }
+  
+  var d1 = Math.floor(Math.random() *7) + 8;
+  var d2 = Math.floor(Math.random() *7) + 8;
+  console.log(d1 + "," + d2)
+  
+  if(d1 === d2) {
+  economy.updateBalance(message.author.id, d1).then(i => {
+    message.reply(d1 + "TL kazandın!")
+  })
+  }
+	
+  if (message.content === 'ping') {
+    message.reply('Pong!');
+  }
+});
 /////////////////////////////////////////
 
 client.commands = new Discord.Collection();
