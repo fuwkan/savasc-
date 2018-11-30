@@ -2,8 +2,6 @@ const Discord = require('discord.js');
 const math = require('math-expression-evaluator')
 const stripIndents = require('common-tags').stripIndents
 
-
-
 exports.run = function(client, message, args) {
     var soru = args.join(' ');
     
@@ -21,8 +19,6 @@ exports.run = function(client, message, args) {
 
         message.channel.send(embed)
     }
-
-
 };  
 
 exports.conf = {
