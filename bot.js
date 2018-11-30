@@ -80,11 +80,33 @@ client.unload = command => {
     }
   });
 };
-
+   
 client.on('message', msg => {
   if (msg.content.toLowerCase() === 'sa') {
     msg.reply('Aleyküm Selam Knk Hoşgeldin');
   }
+	  //////////////////////////
+	client.on('message', message => {
+  if(message.author.bot) return
+ 
+  if(message.content === "nt!para") {
+  economy.fetchBalance(message.author.id).then(i => {
+  message.reply("paran: " + i.money + "TL")
+  })
+  }
+  
+  var d1 = Math.floor(Math.random() *7) + 8;
+  var d2 = Math.floor(Math.random() *7) + 8;
+  console.log(d1 + "," + d2)
+  
+  if(d1 === d2) {
+  economy.updateBalance(message.author.id, d1).then(i => {
+    message.reply(d1 + "TL kazandın!")
+  
+  
+  })
+  }           
+		//////////////////////////
   
       if (msg.content.toLowerCase() === '+ping') {
       msg.reply('ping/ms **' + client.ping + '**');
