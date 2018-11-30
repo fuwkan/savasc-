@@ -626,4 +626,4 @@ client.on('guildMemberRemove', member => {
   ÇıkışKanalı.sendEmbed(ÇıkışMesaj); 
 });
 
-client.login(process.env.BOT_TOKEN);
+client.login(ayarlar.token);
